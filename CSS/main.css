@@ -1,0 +1,26 @@
+body
+{
+    /* background-image: url(https://i.pinimg.com/736x/91/d6/f7/91d6f7c0cc1033396100201dff1b82ee.jpg); */
+    opacity: 0.8;
+    background-attachment: fixed;
+}
+div
+{
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    color:darkred;
+}
+h1,h2,h3,h4,p
+{
+    /* background-color: yellow; */
+    font-size: 150%;
+    color: darkgreen;
+    border-color: black;
+    border-width: 25px, 45px, 50px, 60px ;
+}
+table
+{
+    color: darkgreen;
+    border-color: black;
+    border-width: 25px, 45px, 50px, 60px ;
+}
