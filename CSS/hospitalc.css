@@ -1,0 +1,41 @@
+body 
+{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+  
+/* Navigation */
+.navbar {
+  background-color: #007BFF;
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-brand:hover, .navbar-nav .nav-link:hover {
+  color: #0056b3;
+}
+
+/* Hero Section */
+.jumbotron {
+  background-color: #6894c4;
+}
+
+/* Services Section */
+.card {
+  border: none;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Footer Section */
+footer {
+  background-color: #343a40;
+  color: white;
+}
+.card img{
+  height: 300px;
+}
