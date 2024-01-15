@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Header - Footer | CSE Final Project</title>
+
+  <!-- dropdown menu (for small device) -->
+  <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.min.css" />
+  <!-- tailwind css  -->
+  <link rel="stylesheet" href="../../dist/output.css" />
+
+  <!-- Font awesome -->
+  <script src="https://kit.fontawesome.com/58f7a860b5.js" crossorigin="anonymous"></script>
+
+  <!-- Alpine js -->
+  <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+
+<body class="h-screen">
+  <main class="bg-gray-50" x-data="{lft_open: false, rgt_open: false}">
+    <!-- start header  -->
+    <!-- sidebars for small device  -->
+    <!-- Left Nav Small -->
+    <div class="sm:hidden"
+      :class="{'bg-black h-screen bg-opacity-50 fixed z-30 inset-0':lft_open===true, '':lft_open===false}">
+      <nav
+        class="fixed opacity-0 transform duration-300 z-10 w-80 bg-gray-200 text-gray-800 h-screen overflow-scroll p-3"
+        :class="{'translate-x-0 ease-in opacity-100':open===true, '-translate-x-full ease-out opacity-0':lft_open===false}">
+        <div class="flex justify-between px-2 pt-2 border-b-[1px] pb-4 border-gray-500">
+          <span class="font-bold text-3xl">Sidebar</span>
+          <button class="bg-gray-300 p-2 rounded-full focus:bg-gray-400 focus:outline-none" @click="lft_open = false">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+        </div>
+        <div class="mt-6">
+          <span class="text-xl font-medium pl-2 border-b-[1px] block border-gray-500 pb-2">Categories</span>
+          <ul class="text-lg mt-2">
+            <li x-data="{open_category: false}">
+              <div class="flex justify-between items-center px-4 py-2">
+                <span class="">Category name-1</span>
+                <button class="block hover:bg-gray-400 bg-gray-300 bg-opacity-75 rounded-md"
+                  :class="{'hidden':open_category===true, '':open_category===false}" @click="open_category=true">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                      d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </button>
+                <button class="block hover:bg-gray-400 bg-gray-300 bg-opacity-75 rounded-md"
+                  :class="{'hidden':open_category===false, '':open_category===true}" @click="open_category=false">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+
+              <ul class="px-6 py-2 rounded" :class="{'hidden':open_category===false, '':open_category===true}">
+                <li class="block p-3 border-b-[1px] border-gray-500 bg-gray-300 bg-opacity-50 text-gray-800"
+                  x-data="{sub_category: false}">
+                  <div class="flex justify-between items-center">
+                    <span class="">Sub Category - 1</span>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===true, '':sub_category===false}" @click="sub_category=true">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===false, '':sub_category===true}" @click="sub_category=false">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                  </div>
+                  <ul class="pt-2 rounded" :class="{'hidden':sub_category===false, '':sub_category===true}">
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 1
+                    </li>
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 2
+                    </li>
+                  </ul>
+                </li>
+                <li class="block p-3 border-b-[1px] border-gray-500 bg-gray-300 bg-opacity-50 text-gray-800"
+                  x-data="{sub_category: false}">
+                  <div class="flex justify-between items-center">
+                    <span class="">Sub Category - 1</span>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===true, '':sub_category===false}" @click="sub_category=true">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===false, '':sub_category===true}" @click="sub_category=false">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                  </div>
+                  <ul class="pt-2 rounded" :class="{'hidden':sub_category===false, '':sub_category===true}">
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 1
+                    </li>
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 2
+                    </li>
+                  </ul>
+                </li>
+                <li class="block p-3 border-b-[1px] border-gray-500 bg-gray-300 bg-opacity-50 text-gray-800"
+                  x-data="{sub_category: false}">
+                  <div class="flex justify-between items-center">
+                    <span class="">Sub Category - 1</span>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===true, '':sub_category===false}" @click="sub_category=true">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===false, '':sub_category===true}" @click="sub_category=false">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                  </div>
+                  <ul class="pt-2 rounded" :class="{'hidden':sub_category===false, '':sub_category===true}">
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 1
+                    </li>
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 2
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li x-data="{open_category: false}">
+              <div class="flex justify-between items-center px-4 py-2">
+                <span class="">Category name-1</span>
+                <button class="block hover:bg-gray-400 bg-gray-300 bg-opacity-75 rounded-md"
+                  :class="{'hidden':open_category===true, '':open_category===false}" @click="open_category=true">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                      d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </button>
+                <button class="block hover:bg-gray-400 bg-gray-300 bg-opacity-75 rounded-md"
+                  :class="{'hidden':open_category===false, '':open_category===true}" @click="open_category=false">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+
+              <ul class="px-6 py-2 rounded" :class="{'hidden':open_category===false, '':open_category===true}">
+                <li class="block p-3 border-b-[1px] border-gray-500 bg-gray-300 bg-opacity-50 text-gray-800"
+                  x-data="{sub_category: false}">
+                  <div class="flex justify-between items-center">
+                    <span class="">Sub Category - 1</span>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===true, '':sub_category===false}" @click="sub_category=true">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===false, '':sub_category===true}" @click="sub_category=false">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                  </div>
+                  <ul class="pt-2 rounded" :class="{'hidden':sub_category===false, '':sub_category===true}">
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 1
+                    </li>
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 2
+                    </li>
+                  </ul>
+                </li>
+                <li class="block p-3 border-b-[1px] border-gray-500 bg-gray-300 bg-opacity-50 text-gray-800"
+                  x-data="{sub_category: false}">
+                  <div class="flex justify-between items-center">
+                    <span class="">Sub Category - 1</span>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===true, '':sub_category===false}" @click="sub_category=true">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===false, '':sub_category===true}" @click="sub_category=false">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                  </div>
+                  <ul class="pt-2 rounded" :class="{'hidden':sub_category===false, '':sub_category===true}">
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 1
+                    </li>
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 2
+                    </li>
+                  </ul>
+                </li>
+                <li class="block p-3 border-b-[1px] border-gray-500 bg-gray-300 bg-opacity-50 text-gray-800"
+                  x-data="{sub_category: false}">
+                  <div class="flex justify-between items-center">
+                    <span class="">Sub Category - 1</span>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===true, '':sub_category===false}" @click="sub_category=true">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===false, '':sub_category===true}" @click="sub_category=false">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                  </div>
+                  <ul class="pt-2 rounded" :class="{'hidden':sub_category===false, '':sub_category===true}">
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 1
+                    </li>
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 2
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li x-data="{open_category: false}">
+              <div class="flex justify-between items-center px-4 py-2">
+                <span class="">Category name-1</span>
+                <button class="block hover:bg-gray-400 bg-gray-300 bg-opacity-75 rounded-md"
+                  :class="{'hidden':open_category===true, '':open_category===false}" @click="open_category=true">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                      d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </button>
+                <button class="block hover:bg-gray-400 bg-gray-300 bg-opacity-75 rounded-md"
+                  :class="{'hidden':open_category===false, '':open_category===true}" @click="open_category=false">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+
+              <ul class="px-6 py-2 rounded" :class="{'hidden':open_category===false, '':open_category===true}">
+                <li class="block p-3 border-b-[1px] border-gray-500 bg-gray-300 bg-opacity-50 text-gray-800"
+                  x-data="{sub_category: false}">
+                  <div class="flex justify-between items-center">
+                    <span class="">Sub Category - 1</span>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===true, '':sub_category===false}" @click="sub_category=true">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===false, '':sub_category===true}" @click="sub_category=false">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                  </div>
+                  <ul class="pt-2 rounded" :class="{'hidden':sub_category===false, '':sub_category===true}">
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 1
+                    </li>
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 2
+                    </li>
+                  </ul>
+                </li>
+                <li class="block p-3 border-b-[1px] border-gray-500 bg-gray-300 bg-opacity-50 text-gray-800"
+                  x-data="{sub_category: false}">
+                  <div class="flex justify-between items-center">
+                    <span class="">Sub Category - 1</span>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===true, '':sub_category===false}" @click="sub_category=true">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===false, '':sub_category===true}" @click="sub_category=false">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                  </div>
+                  <ul class="pt-2 rounded" :class="{'hidden':sub_category===false, '':sub_category===true}">
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 1
+                    </li>
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 2
+                    </li>
+                  </ul>
+                </li>
+                <li class="block p-3 border-b-[1px] border-gray-500 bg-gray-300 bg-opacity-50 text-gray-800"
+                  x-data="{sub_category: false}">
+                  <div class="flex justify-between items-center">
+                    <span class="">Sub Category - 1</span>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===true, '':sub_category===false}" @click="sub_category=true">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                    <button class="block hover:bg-gray-600 bg-gray-300 rounded-md"
+                      :class="{'hidden':sub_category===false, '':sub_category===true}" @click="sub_category=false">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                  </div>
+                  <ul class="pt-2 rounded" :class="{'hidden':sub_category===false, '':sub_category===true}">
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 1
+                    </li>
+                    <li class="block p-3 border-b-[1px] border-gray-400 text-gray-800">
+                      Sub Sub Category - 2
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Main Nav Small -->
+    <div class="fixed w-full top-0 z-10 sm:hidden">
+      <header class="flex justify-between bg-gray-700">
+        <span class="flex">
+          <button class="text-white p-4 rounded-xl focus:bg-gray-600 focus:outline-none" @click="lft_open = true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <a href="../../index.html" class="block text-2xl font-bold p-4 text-white">PUC Shop</a>
+        </span>
+        <div class="text-white flex justify-between items-center">
+          <a href="cart.html" class="flex space-x-3 items-center border rounded-lg py-1 px-2 cursor-pointer">
+            <span class="">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </span>
+            <span class="bg-gray-200 rounded-full px-2 font-semibold text-red-500">3</span>
+          </a>
+          <button class="text-white p-4 rounded-xl focus:bg-gray-600 focus:outline-none" @click="rgt_open = true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </header>
+    </div>
+
+    <!-- Right Nav Small -->
+    <div class="sm:hidden"
+      :class="{'bg-black bg-opacity-50 h-screen fixed inset-0 z-30':rgt_open===true, '':rgt_open===false}">
+      <nav class="fixed opacity-0 top-0 transform duration-300 z-10 w-80 bg-gray-200 text-gray-800 h-full p-3"
+        :class="{'right-0 ease-in opacity-100':rgt_open===true, 'right-0 translate-x-full ease-out opacity-0':rgt_open===false}">
+        <div class="flex justify-between px-2 pt-2 border-b-[1px] pb-4 border-gray-500">
+          <button class="bg-gray-300 p-2 rounded-full focus:bg-gray-400 focus:outline-none" @click="rgt_open = false">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          <span class="font-bold text-3xl">Sidebar</span>
+        </div>
+        <ul class="mt-8 pl-4">
+          <li class="flex justify-start items-center">
+            <span class="">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+              </svg>
+            </span>
+            <a href="login.html" class="px-4 py-2 rounded-md">Login / Register</a>
+          </li>
+          <li class="flex justify-start items-center">
+            <span class="">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </span>
+            <a href="userProfile.html" class="block px-4 py-2 hover:bg-gray-700 rounded-md">Profile</a>
+          </li>
+          <li class="flex justify-start items-center">
+            <span class="">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </span>
+            <a href="" class="block px-4 py-2 hover:bg-gray-700 rounded-md">Wishlist</a>
+          </li>
+          <li class="flex justify-start items-center">
+            <span class="">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
+            </span>
+            <a href="notification.html" class="block px-4 py-2 rounded-md">Notifications</a>
+            <div class="bg-gray-700 text-white font-medium rounded-full px-2">
+              3
+            </div>
+          </li>
+          <li class="flex justify-start items-center">
+            <span class="">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </span>
+            <a href="cart.html" class="block px-4 py-2 rounded-md">My Cart</a>
+          </li>
+          <li class="flex justify-start items-center">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+            </span>
+            <a href="my-orders.html" class="block px-4 py-2 rounded-md">My Orders</a>
+          </li>
+          <li class="flex justify-start items-center">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </span>
+            <a href="" class="block px-4 py-2 hover:bg-gray-700 rounded-md">Services</a>
+          </li>
+          <li class="flex justify-start items-center">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </span>
+            <a href="" class="block px-4 py-2 hover:bg-gray-700 rounded-md">Help</a>
+          </li>
+          <li class="flex justify-start items-center">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </span>
+            <a href="" class="block px-4 py-2 hover:bg-gray-700 rounded-md">Location</a>
+          </li>
+          <li class="flex justify-start items-center">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+            </span>
+            <a href="" class="block px-4 py-2 hover:bg-gray-700 rounded-md">Logout (as Sanjoy)</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- Small Screen Nav Section End -->
+    <!-- end sidebars for small device  -->
+
+    <!-- start top bar -->
+    <div class="top-bar bg-slate-100 py-1 text-gray-700 hidden md:block">
+      <div class="container mx-auto flex justify-between">
+        <ul class="flex">
+          <li>
+            <a class="border-r-2 px-2 flex hover:text-gray-900" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" class="hidden h-5 mt-0.5 md:block" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+              </svg>
+              <p class="ml-1 font-medium">Login/Register</p>
+            </a>
+          </li>
+          <li>
+            <div class="group">
+              <a class="border-r-2 px-2 flex hover:text-gray-900" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="hidden h-5 mt-0.5 md:block" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="ml-1">Profile (Username)</p>
+              </a>
+              <ul class="hidden border-t-2 p-2 space-y-2 bg-slate-100 group-hover:block absolute z-50">
+                <li class="p-1 rounded hover:bg-slate-200">
+                  <a class="flex items-center space-x-1 hover:text-gray-900" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p class="">My Account</p>
+                  </a>
+                </li>
+                <li class="p-1 rounded hover:bg-slate-200">
+                  <a class="flex items-center space-x-1 hover:text-gray-900" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                    <p class="">Notifications</p>
+                    <span class="flex justify-center items-center rounded-full text-white w-6 h-6 bg-slate-600">5</span>
+                  </a>
+                </li>
+                <li class="p-1 rounded hover:bg-slate-200">
+                  <a class="flex items-center space-x-1 hover:text-gray-900" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    <p class="">My Orders</p>
+                  </a>
+                </li>
+                <li class="p-1 rounded hover:bg-slate-200">
+                  <a class="flex items-center space-x-1 hover:text-gray-900" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                    <p class="">My Wishlist</p>
+                    <span class="flex justify-center items-center rounded-full text-white w-6 h-6 bg-slate-600">5</span>
+                  </a>
+                </li>
+                <li class="p-1 rounded hover:bg-slate-200">
+                  <a class="flex items-center space-x-1 hover:text-gray-900" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                    <p class="">My Reviews</p>
+                  </a>
+                </li>
+                <li class="p-1 rounded hover:bg-slate-200">
+                  <a class="flex items-center space-x-1 hover:text-gray-900" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                    </svg>
+                    <p class="">My Returns & Cancellations</p>
+                  </a>
+                </li>
+                <li class="p-1 rounded hover:bg-slate-200">
+                  <a class="flex items-center space-x-1 hover:text-gray-900" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    <p class="">Logout</p>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a class="border-r-2 px-2 hover:text-gray-900 hidden lg:flex" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" class="hidden h-5 mt-0.5 xl:block" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+              </svg>
+              <p class="ml-1">Track Order</p>
+            </a>
+          </li>
+          <li>
+            <a class="border-r-2 px-2 hover:text-gray-900 hidden lg:flex" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" class="hidden h-5 mt-0.5 xl:block" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <p class="ml-1">Service Order</p>
+            </a>
+          </li>
+          <li>
+            <a class="border-r-2 px-2 hover:text-gray-900 hidden lg:flex" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" class="hidden h-5 mt-0.5 xl:block" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p class="ml-1">Help</p>
+            </a>
+          </li>
+          <li>
+            <a class="border-r-2 px-2 flex hover:text-gray-900" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" class="hidden h-5 mt-0.5 xl:block" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <p class="ml-1">Our Locations</p>
+            </a>
+          </li>
+        </ul>
+        <ul class="flex">
+          <li>
+            <a class="border-r-2 px-2 flex hover:text-gray-900" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" class="hidden h-5 mt-0.5 xl:block" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+              </svg>
+              <p class="ml-1">Bangladesh</p>
+            </a>
+          </li>
+          <li>
+            <a class="border-r-2 px-2 flex hover:text-gray-900" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" class="hidden h-5 pt-1 xl:block" viewBox="0 0 20 20"
+                fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M7 2a1 1 0 011 1v1h3a1 1 0 110 2H9.578a18.87 18.87 0 01-1.724 4.78c.29.354.596.696.914 1.026a1 1 0 11-1.44 1.389c-.188-.196-.373-.396-.554-.6a19.098 19.098 0 01-3.107 3.567 1 1 0 01-1.334-1.49 17.087 17.087 0 003.13-3.733 18.992 18.992 0 01-1.487-2.494 1 1 0 111.79-.89c.234.47.489.928.764 1.372.417-.934.752-1.913.997-2.927H3a1 1 0 110-2h3V3a1 1 0 011-1zm6 6a1 1 0 01.894.553l2.991 5.982a.869.869 0 01.02.037l.99 1.98a1 1 0 11-1.79.895L15.383 16h-4.764l-.724 1.447a1 1 0 11-1.788-.894l.99-1.98.019-.038 2.99-5.982A1 1 0 0113 8zm-1.382 6h2.764L13 11.236 11.618 14z"
+                  clip-rule="evenodd" />
+              </svg>
+              <p class="ml-1">English</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- end top bar -->
+
+    <!-- start main head bar -->
+    <div class="hidden sm:block main-bar shadow md:shadow-none bg-white px-1 py-2 md:p-1 sticky top-0 z-10 md:relative">
+      <div class="container mx-auto flex justify-between items-center">
+        <!-- start left side items  -->
+        <div class="flex items-center text-gray-900 space-x-3">
+          <!-- logo & title -->
+          <div class="hidden md:flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
+                clip-rule="evenodd" />
+            </svg>
+            <b class="font-bold text-3xl">PUCShop</b>
+          </div>
+          <!-- search box -->
+          <div class="hidden md:block">
+            <form class="flex justify-start items-center" action="#" method="get">
+              <select name="" id=""
+                class="rounded-l-3xl border-2 border-slate-200 bg-slate-200 focus-visible:outline-none focus:ring-0 focus:border-slate-200">
+                <option value="all-categories">All Categories</option>
+                <option value="">Category - 01</option>
+                <option value="">Category - 02</option>
+                <option value="">Category - 03</option>
+                <option value="">Category - 04</option>
+                <option value="">Category - 05</option>
+                <option value="">Category - 06</option>
+              </select>
+              <input onkeyup="openSuggestionBox(this.value)"
+                class="xl:w-96 lg:w-72 md:w-44 border-2 border-slate-200 bg-slate-200 focus-visible:outline-none focus:ring-0 focus:border-slate-200"
+                type="text" name="search" id="" placeholder="Search product" autocomplete="off" />
+              <button class="border-2 border-l-0 rounded-r-3xl border-slate-200 bg-slate-200 p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+            </form>
+          </div>
+          <!-- offer options  -->
+          <div class="hidden lg:flex items-center">
+            <a href="#" class="hidden md:flex">
+              <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+              </svg>
+              <div class="flex flex-col">
+                <p class="font-semibold">Offers</p>
+                <small class="p-0 -mt-1">Latest Offer</small>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!-- end left side items  -->
+        <!-- start right side items  -->
+        <div class="flex items-center space-x-2">
+          <!-- search button for small devices -->
+
+          <!-- cart button  -->
+          <button
+            class="hidden sm:flex bg-gray-900 text-white rounded-md h-8 md:h-11 p-2 items-center hover:bg-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path
+                d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+            </svg>
+            <p class="hidden md:block mx-1 font-semibold">Cart</p>
+            <span
+              class="flex p-1 bg-red-600 rounded-full text-white h-5 w-5 items-center justify-center text-sm">0</span>
+          </button>
+        </div>
+        <!-- end right side items  -->
+      </div>
+      <!-- start search box for sm  -->
+    </div>
+    <!-- end main head bar -->
+
+    <!-- start navbar -->
+    <nav class="navbar hidden md:block bg-gray-900 sticky top-0 z-30 w-full text-white">
+      <div class="container mx-auto">
+        <!-- start navbar items  -->
+        <ul class="flex justify-between items-center space-x-4">
+          <li>
+            <div
+              class="group py-1 w-60 border-b-2 border-gray-500 mb-1 text-center rounded-t-lg hover:bg-blue-700 hover:text-white hover:border-blue-700">
+              <a href="#" class="flex justify-center items-center">
+                All Categories
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd" />
+                </svg>
+              </a>
+              <!-- start category list  -->
+              <div
+                class="hidden mt-1.5 py-2 h-[27rem] w-60 group-hover:block absolute z-30 shadow bg-slate-100 text-gray-900 border-t-4 border-blue-700">
+                <ul class="overflow-y-scroll h-full flex flex-col items-start w-full">
+                  <li class="cat-item w-full flex">
+                    <a href="#"
+                      class="w-full h-7 px-1.5 py-4 border-t flex justify-between items-center hover:bg-blue-700 hover:text-white cat-title">
+                      <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5 ring-2 ring-black rounded-full cat-icon" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <p class="">Category title 01</p>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                    <div class="sub-cat hidden w-56 absolute left-56 top-0 z-30">
+                      <ul class="flex flex-col ml-4 h-[26.8rem] pt-3 shadow bg-slate-100">
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 011</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 011</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="cat-item w-full flex">
+                    <a href="#"
+                      class="w-full h-7 px-1.5 py-4 border-t flex justify-between items-center hover:bg-blue-700 hover:text-white cat-title">
+                      <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5 ring-2 ring-black rounded-full cat-icon" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <p class="">Category title 02</p>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                    <div class="sub-cat hidden w-56 absolute left-56 top-0 z-30">
+                      <ul class="flex flex-col ml-4 h-[26.8rem] pt-3 shadow bg-slate-100">
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 022</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 011</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="cat-item w-full flex">
+                    <a href="#"
+                      class="w-full h-7 px-1.5 py-4 border-t flex justify-between items-center hover:bg-blue-700 hover:text-white cat-title">
+                      <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5 ring-2 ring-black rounded-full cat-icon" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <p class="">Category title 03</p>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                    <div class="sub-cat hidden w-56 absolute left-56 top-0 z-30">
+                      <ul class="flex flex-col ml-4 h-[26.8rem] pt-3 shadow bg-slate-100">
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 033</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 011</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="cat-item w-full flex">
+                    <a href="#"
+                      class="w-full h-7 px-1.5 py-4 border-t flex justify-between items-center hover:bg-blue-700 hover:text-white cat-title">
+                      <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5 ring-2 ring-black rounded-full cat-icon" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <p class="">Category title 04</p>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                    <div class="sub-cat hidden w-56 absolute left-56 top-0 z-30">
+                      <ul class="flex flex-col ml-4 h-[26.8rem] pt-3 shadow bg-slate-100">
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 044</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 011</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="cat-item w-full flex">
+                    <a href="#"
+                      class="w-full h-7 px-1.5 py-4 border-t flex justify-between items-center hover:bg-blue-700 hover:text-white cat-title">
+                      <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5 ring-2 ring-black rounded-full cat-icon" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <p class="">Category title 05</p>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                    <div class="sub-cat hidden w-56 absolute left-56 top-0 z-30">
+                      <ul class="flex flex-col ml-4 h-[26.8rem] pt-3 shadow bg-slate-100">
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 055</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 011</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="cat-item w-full flex">
+                    <a href="#"
+                      class="w-full h-7 px-1.5 py-4 border-t flex justify-between items-center hover:bg-blue-700 hover:text-white cat-title">
+                      <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5 ring-2 ring-black rounded-full cat-icon" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <p class="">Category title 06</p>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                    <div class="sub-cat hidden w-56 absolute left-56 top-0 z-30">
+                      <ul class="flex flex-col ml-4 h-[26.8rem] pt-3 shadow bg-slate-100">
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 066</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 011</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="cat-item w-full flex">
+                    <a href="#"
+                      class="w-full h-7 px-1.5 py-4 border-t flex justify-between items-center hover:bg-blue-700 hover:text-white cat-title">
+                      <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5 ring-2 ring-black rounded-full cat-icon" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <p class="">Category title 07</p>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                    <div class="sub-cat hidden w-56 absolute left-56 top-0 z-30">
+                      <ul class="flex flex-col ml-4 h-[26.8rem] pt-3 shadow bg-slate-100">
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 077</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 011</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="cat-item w-full flex">
+                    <a href="#"
+                      class="w-full h-7 px-1.5 py-4 border-t flex justify-between items-center hover:bg-blue-700 hover:text-white cat-title">
+                      <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5 ring-2 ring-black rounded-full cat-icon" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <p class="">Category title 08</p>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                    <div class="sub-cat hidden w-56 absolute left-56 top-0 z-30">
+                      <ul class="flex flex-col ml-4 h-[26.8rem] pt-3 shadow bg-slate-100">
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 088</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 011</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="cat-item w-full flex">
+                    <a href="#"
+                      class="w-full h-7 px-1.5 py-4 border-t flex justify-between items-center hover:bg-blue-700 hover:text-white cat-title">
+                      <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5 ring-2 ring-black rounded-full cat-icon" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <p class="">Category title 09</p>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                    <div class="sub-cat hidden w-56 absolute left-56 top-0 z-30">
+                      <ul class="flex flex-col ml-4 h-[26.8rem] pt-3 shadow bg-slate-100">
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 099</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 011</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="cat-item w-full flex">
+                    <a href="#"
+                      class="w-full h-7 px-1.5 py-4 border-t flex justify-between items-center hover:bg-blue-700 hover:text-white cat-title">
+                      <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5 ring-2 ring-black rounded-full cat-icon" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <p class="">Category title 10</p>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                    <div class="sub-cat hidden w-56 absolute left-56 top-0 z-30">
+                      <ul class="flex flex-col ml-4 h-[26.8rem] pt-3 shadow bg-slate-100">
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 100</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 011</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="cat-item w-full flex">
+                    <a href="#"
+                      class="w-full h-7 px-1.5 py-4 border-t flex justify-between items-center hover:bg-blue-700 hover:text-white cat-title">
+                      <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5 ring-2 ring-black rounded-full cat-icon" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <p class="">Category title 11</p>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                    <div class="sub-cat hidden w-56 absolute left-56 top-0 z-30">
+                      <ul class="flex flex-col ml-4 h-[26.8rem] pt-3 shadow bg-slate-100">
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 101</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 011</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="cat-item w-full flex">
+                    <a href="#"
+                      class="w-full h-7 px-1.5 py-4 border-t flex justify-between items-center hover:bg-blue-700 hover:text-white cat-title">
+                      <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5 ring-2 ring-black rounded-full cat-icon" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <p class="">Category title 102</p>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                    <div class="sub-cat hidden w-56 absolute left-56 top-0 z-30">
+                      <ul class="flex flex-col ml-4 h-[26.8rem] pt-3 shadow bg-slate-100">
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 102</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 011</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="cat-item w-full flex">
+                    <a href="#"
+                      class="w-full h-7 px-1.5 py-4 border-t flex justify-between items-center hover:bg-blue-700 hover:text-white cat-title">
+                      <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5 ring-2 ring-black rounded-full cat-icon" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <p class="">Category title 103</p>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                    <div class="sub-cat hidden w-56 absolute left-56 top-0 z-30">
+                      <ul class="flex flex-col ml-4 h-[26.8rem] pt-3 shadow bg-slate-100">
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 103</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 011</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="cat-item w-full flex">
+                    <a href="#"
+                      class="w-full h-7 px-1.5 py-4 border-t flex justify-between items-center hover:bg-blue-700 hover:text-white cat-title">
+                      <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5 ring-2 ring-black rounded-full cat-icon" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <p class="">Category title 104</p>
+                      </div>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                    <div class="sub-cat hidden w-56 absolute left-56 top-0 z-30">
+                      <ul class="flex flex-col ml-4 h-[26.8rem] pt-3 shadow bg-slate-100">
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 1044</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="sub-cat-item w-full flex py-0.5 border-b hover:bg-blue-700 hover:text-white">
+                          <a href="#" class="w-full flex justify-between items-center px-1">
+                            <p>Sub Category - 011</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                          <div class="sub-sub-cat hidden absolute shadow left-56 w-48 -mt-0.5 bg-slate-100 text-black">
+                            <ul class="flex flex-col w-full items-start p-1">
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                              <li class="w-full hover:bg-blue-700 hover:text-white">
+                                <a href="#">Sub Sub Category</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <!-- end category list  -->
+            </div>
+          </li>
+          <li>
+            <div
+              class="group py-1 w-44 border-b-2 border-gray-500 mb-1 text-center rounded-t-lg hover:bg-blue-700 hover:text-white hover:border-blue-700">
+              <a href="#" class="flex justify-center items-center">
+                Shop by Brand
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd" />
+                </svg>
+              </a>
+              <!-- start brand list  -->
+              <div
+                class="hidden mt-1.5 w-44 group-hover:block absolute z-30 shadow rounded-b-lg bg-white text-gray-900 border-t-4 border-blue-700">
+                <ul class="flex flex-col items-start w-full space-y-1">
+                  <li class="w-full flex border-t p-1 hover:bg-blue-700 hover:text-white">
+                    <a href="#" class="">Brand Title - 01</a>
+                  </li>
+                  <li class="w-full flex border-t p-1 hover:bg-blue-700 hover:text-white">
+                    <a href="#" class="">Brand Title - 01</a>
+                  </li>
+                  <li class="w-full flex border-t p-1 hover:bg-blue-700 hover:text-white">
+                    <a href="#" class="">Brand Title - 01</a>
+                  </li>
+                  <li class="w-full flex border-t p-1 hover:bg-blue-700 hover:text-white">
+                    <a href="#" class="">Brand Title - 01</a>
+                  </li>
+                  <li class="w-full flex border-t p-1 hover:bg-blue-700 hover:text-white">
+                    <a href="#" class="">Brand Title - 01</a>
+                  </li>
+                  <li class="w-full flex border-t p-1 hover:bg-blue-700 hover:text-white">
+                    <a href="#" class="">Brand Title - 01</a>
+                  </li>
+                  <li class="w-full flex border-t p-1 hover:bg-blue-700 hover:text-white">
+                    <a href="#" class="">Brand Title - 01</a>
+                  </li>
+                  <li class="w-full flex border-t p-1 hover:bg-blue-700 hover:text-white">
+                    <a href="#" class="">Brand Title - 01</a>
+                  </li>
+                  <li class="w-full flex border-t p-1 hover:bg-blue-700 hover:text-white">
+                    <a href="#" class="">Brand Title - 01</a>
+                  </li>
+                  <li class="w-full flex border-t p-1 hover:bg-blue-700 hover:text-white">
+                    <a href="#" class="">Brand Title - 01</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- end brand list  -->
+            </div>
+          </li>
+          <li>
+            <a href="#" class="border-b-2 border-gray-500 mb-1 py-1 hover:text-slate-300 flex items-center">Online
+              Exclusive</a>
+          </li>
+          <li class="hidden lg:block">
+            <a href="#" class="border-b-2 border-gray-500 mb-1 py-1 hover:text-slate-300 flex items-center">Weekly
+              Offers</a>
+          </li>
+          <li>
+            <a href="#" class="border-b-2 border-gray-500 mb-1 py-1 hover:text-slate-300 flex items-center">New
+              Arrivals</a>
+          </li>
+          <li class="group">
+            <a href="#" class="border-b-2 border-gray-500 mb-1 py-1 hover:text-slate-300 flex items-center">Pages</a>
+            <div class="hidden group-hover:block absolute bg-gray-900 p-2 2xl:right-36 md:right-5">
+              <ul>
+                <li>
+                  <a class="hover:text-blue-700" href="./header-footer.html">Header - Footer</a>
+                </li>
+                <li>
+                  <a class="hover:text-blue-700" href="../../index.html">Home Page</a>
+                </li>
+                <li>
+                  <a class="hover:text-blue-700" href="./product-list.html">Product List Page</a>
+                </li>
+                <li>
+                  <a class="hover:text-blue-700" href="./checkout.html">Checkout Page</a>
+                </li>
+                <li>
+                  <a class="hover:text-blue-700" href="./my-orders.html">Order List Page</a>
+                </li>
+                <li>
+                  <a class="hover:text-blue-700" href="./notification.html">Notification Page</a>
+                </li>
+                <li>
+                  <a class="hover:text-blue-700" href="./productDetails.html">Product Details Page</a>
+                </li>
+                <li>
+                  <a class="hover:text-blue-700" href="./login.html">Login Page</a>
+                </li>
+                <li>
+                  <a class="hover:text-blue-700" href="./signup.html">Registration Page</a>
+                </li>
+                <li>
+                  <a class="hover:text-blue-700" href="./cart.html">Cart Page</a>
+                </li>
+                <li>
+                  <a class="hover:text-blue-700" href="./orderDetails.html">Order Details</a>
+                </li>
+                <li>
+                  <a class="hover:text-blue-700" href="./userProfile.html">Profile Page</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <!-- end navbar items  -->
+      </div>
+    </nav>
+    <!-- end navbar -->
+    <!-- start search suggestions box  -->
+    <div id="suggestion-box"
+      class="container mx-auto md:top-[5.7rem] z-50 mt-1 h-0 overflow-hidden fixed transition-all duration-500">
+      <div class="w-5/6 h-full md:w-[35rem] mx-auto rounded-md bg-slate-200 overflow-hidden flex flex-col">
+        <div class="flex justify-between items-center p-1 bg-slate-400 text-gray-900 font-semibold">
+          <p>47 Results found for "..."</p>
+          <button onclick="openSuggestionBox('')"
+            class="h-5 w-5 rounded-full bg-gray-500 hover:bg-gray-300 flex justify-center items-center">
+            x
+          </button>
+        </div>
+        <div class="w-full grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 p-2">
+          <div class="h-20 w-20 rounded bg-white shadow"></div>
+          <div class="h-20 w-20 rounded bg-white shadow"></div>
+          <div class="h-20 w-20 rounded bg-white shadow"></div>
+          <div class="h-20 w-20 rounded bg-white shadow"></div>
+          <div class="h-20 w-20 rounded bg-white shadow"></div>
+          <div class="h-20 w-20 rounded bg-white shadow"></div>
+        </div>
+        <a class="flex justify-end text-indigo-700 px-1" href="#">View all</a>
+      </div>
+    </div>
+    <!-- end search suggestions box  -->
+    <!-- end header  -->
+
+    <!-- start main body section  -->
+    <div class="container mx-auto pt-16 md:pt-0">
+      <div class="test w-full flex justify-center items-center h-fit my-4">
+        <div class="px-6 md:container md:px-0 my-4">
+          <div class="md:grid md:grid-cols-12 md:gap-4">
+            <div class="md:col-start-2 md:col-span-7 bg-white px-4 py-4 rounded">
+              <h1 class="text-2xl md:text-4xl text-gray-600 font-semibold md:font-medium uppercase">
+                My Account
+              </h1>
+              <div class="mt-12 px-2 space-y-8">
+                <!-- Personal info Section -->
+                <div class="">
+                  <h2 class="text-xl md:text-2xl font-medium border-b-2 border-gray-200 pb-2">
+                    Personal Info
+                  </h2>
+                  <div class="space-y-1">
+                    <div class="flex justify-center mt-4">
+                      <div class="h-28 w-28 md:h-36 md:w-36 relative">
+                        <div class="">
+                          <img src="../images/user.jpeg" alt=""
+                            class="h-28 w-28 md:h-36 md:w-36 rounded-full border-2" />
+                        </div>
+                        <div class="rounded-full absolute left-20 md:left-28 md:bottom-2 bottom-1 cursor-pointer">
+                          <i class="far fa-edit text-xl bg-white"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flex flex-col pt-4">
+                      <label for="" class="text-sm md:text-lg text-gray-700 font-medium">Name</label>
+                      <input type="text" name="" id=""
+                        class="bg-gray-100 px-3 py-2 w-full rounded mt-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none" />
+                    </div>
+                    <div class="flex flex-col pt-2">
+                      <label for="" class="text-sm md:text-lg text-gray-700 font-medium">Email</label>
+                      <input type="email" name="" id=""
+                        class="bg-gray-100 px-3 py-2 w-full rounded mt-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none" />
+                    </div>
+                    <div class="flex flex-col pt-2">
+                      <label for="" class="text-sm md:text-lg text-gray-700 font-medium">Phone</label>
+                      <input type="text" name="" id=""
+                        class="bg-gray-100 px-3 py-2 w-full rounded mt-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none" />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Billing Section -->
+                <div class="">
+                  <h2 class="text-xl md:text-2xl font-medium border-b-2 border-gray-200 pb-2">
+                    Billing Address
+                  </h2>
+                  <div class="space-y-1">
+                    <div class="flex flex-col pt-4">
+                      <label for="" class="text-sm md:text-lg text-gray-700 font-medium">Name</label>
+                      <input type="text" name="" id=""
+                        class="bg-gray-100 px-3 py-2 w-full rounded mt-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none" />
+                    </div>
+                    <div class="flex flex-col pt-2">
+                      <label for="" class="text-sm md:text-lg text-gray-700 font-medium">Phone</label>
+                      <input type="text" name="" id=""
+                        class="bg-gray-100 px-3 py-2 w-full rounded mt-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none" />
+                    </div>
+                    <div class="space-y-2">
+                      <div class="flex flex-col pt-2">
+                        <select name="" id=""
+                          class="text-gray-500 bg-gray-100 px-3 py-2 w-full rounded mt-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none">
+                          <option value="none" selected disabled class="text-gray-500">
+                            Select a Country
+                          </option>
+                          <option value="bangladesh" class="text-gray-700">
+                            Bangladesh
+                          </option>
+                          <option value="india" class="text-gray-700">
+                            India
+                          </option>
+                        </select>
+                      </div>
+                      <div class="flex flex-col pt-2">
+                        <select name="" id=""
+                          class="text-gray-500 bg-gray-100 px-3 py-2 w-full rounded mt-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none">
+                          <option value="none" selected disabled class="text-gray-500">
+                            Select a City
+                          </option>
+                          <option value="bangladesh" class="text-gray-700">
+                            Bangladesh
+                          </option>
+                          <option value="india" class="text-gray-700">
+                            India
+                          </option>
+                        </select>
+                      </div>
+                      <div class="flex flex-col pt-2">
+                        <select name="" id=""
+                          class="text-gray-500 bg-gray-100 px-3 py-2 w-full rounded mt-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none">
+                          <option value="none" selected disabled class="text-gray-500">
+                            Select an Area
+                          </option>
+                          <option value="bangladesh" class="text-gray-700">
+                            Bangladesh
+                          </option>
+                          <option value="india" class="text-gray-700">
+                            India
+                          </option>
+                        </select>
+                      </div>
+                      <div class="flex flex-col pt-2">
+                        <select name="" id=""
+                          class="text-gray-500 bg-gray-100 px-3 py-2 w-full rounded mt-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none">
+                          <option value="none" selected disabled class="text-gray-500">
+                            Select a Zone
+                          </option>
+                          <option value="bangladesh" class="text-gray-700">
+                            Bangladesh
+                          </option>
+                          <option value="india" class="text-gray-700">
+                            India
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="pt-2">
+                      <textarea
+                        class="bg-gray-100 px-3 py-2 w-full rounded mt-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none resize-none"
+                        rows="4" placeholder="Write your address"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Password Change Section -->
+                <div class="">
+                  <h2 class="text-xl md:text-2xl font-medium border-b-2 border-gray-200 pb-2">
+                    Password Change
+                  </h2>
+                  <div class="space-y-1">
+                    <div class="flex flex-col pt-2">
+                      <label for="" class="text-sm md:text-lg text-gray-700 font-medium">Old Password</label>
+                      <input type="password" name="" id=""
+                        class="bg-gray-100 px-3 py-2 w-full rounded mt-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none" />
+                    </div>
+                    <div class="flex flex-col pt-2">
+                      <label for="" class="text-sm md:text-lg text-gray-700 font-medium">New Password</label>
+                      <input type="password" name="" id=""
+                        class="bg-gray-100 px-3 py-2 w-full rounded mt-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none" />
+                    </div>
+                    <div class="flex flex-col pt-2">
+                      <label for="" class="text-sm md:text-lg text-gray-700 font-medium">Confirm New Password</label>
+                      <input type="password" name="" id=""
+                        class="bg-gray-100 px-3 py-2 w-full rounded mt-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none" />
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit"
+                  class="w-full px-3 py-2 md:text-lg bg-indigo-600 text-indigo-100 rounded-md border-2 hover:border-2 hover:border-indigo-600 hover:bg-transparent hover:text-indigo-600">
+                  Save Changes
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="hidden md:block md:col-end-12 md:col-span-3 bg-white px-4 py-4 md:h-fit text-gray-600 font-medium rounded">
+              <div class="text-xl border-b-2 border-gray-200 px-4 py-3">
+                <span class="cursor-pointer hover:text-indigo-500">My Account</span>
+              </div>
+              <div class="text-xl border-b-2 border-gray-200 px-4 py-3">
+                <span class="cursor-pointer hover:text-indigo-500">My Orders</span>
+              </div>
+              <div class="text-xl border-b-2 border-gray-200 px-4 py-3">
+                <span class="cursor-pointer hover:text-indigo-500">My Wishlist</span>
+              </div>
+              <div class="text-xl px-4 py-3">
+                <span class="cursor-pointer hover:text-indigo-500">My Reviews</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end main body section  -->
+
+    <!-- start footer section -->
+    <div class="bg-gray-700 h-fit mt-16 text-white px-4 md:px-8 pb-4">
+      <div class="container mx-auto">
+        <span class="flex justify-center p-4 text-xl">PUC Shop</span>
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div class="space-y-4">
+            <div class="flex flex-col space-y-3">
+              <span class="font-medium border-b-2 pb-1 border-gray-500 text-sm md:text-base">Join Our Mailling
+                Service</span>
+              <div class="space-y-2">
+                <input type="text" name="" placeholder="Enter your Email"
+                  class="py-1 px-2 rounded-lg w-full placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-indigo-600" />
+                <button class="py-1 px-4 w-fit bg-indigo-600 rounded-md text-sm md:text-base">
+                  Subscribe
+                </button>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <span class="font-medium border-b-2 pb-1 border-gray-500">Follow Us On:</span>
+              <div class="flex space-x-1 md:space-x-2">
+                <span class="">
+                  <img src="../images/facebook.svg" alt="" class="h-6 w-6 md:h-8 md:w-8" />
+                </span>
+                <span class="">
+                  <img src="../images/instagram.svg" alt="" class="h-6 w-6 md:h-8 md:w-8" />
+                </span>
+                <span class="">
+                  <img src="../images/youtube.svg" alt="" class="h-6 w-6 md:h-8 md:w-8" />
+                </span>
+                <span class="">
+                  <img src="../images/twitter.svg" alt="" class="h-6 w-6 md:h-8 md:w-8" />
+                </span>
+                <span class="">
+                  <img src="../images/gmail.svg" alt="" class="h-6 w-6 md:h-8 md:w-8" />
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-3 md:pl-4">
+            <span class="font-medium border-b-2 pb-1 border-gray-500">Our Services</span>
+            <div class="text-xs space-y-[2px] md:text-base md:space-y-0">
+              <p>Installment Service</p>
+              <p>After Sale Service</p>
+              <p>Total Protection Service</p>
+              <p>Extended Warranty Service</p>
+              <p>Our Discount Service</p>
+              <p>Gift Card Service</p>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <span class="font-medium border-b-2 pb-1 border-gray-500">Customer Care</span>
+            <div class="text-xs space-y-[2px] md:text-base md:space-y-0">
+              <p>Corporate Sales</p>
+              <p>FAQ</p>
+              <p>Shopping Guid & Publications</p>
+              <p>Showroom Locator</p>
+              <p>Warranty Policy</p>
+              <p>Return & Exchange</p>
+              <p>Contact Us</p>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <span class="font-medium border-b-2 pb-1 border-gray-500">About PUCShop</span>
+            <div class="text-xs space-y-[2px] md:text-base md:space-y-0">
+              <p>Who We Are?</p>
+              <p>Corporate Governance</p>
+              <p>Investors Relations & Report</p>
+              <p>Sustainability</p>
+              <p>News</p>
+              <p>Job Opportunities</p>
+            </div>
+          </div>
+          <!-- <div class="pl-2 space-y-4 text-sm md:text-lg md:space-y-0 md:flex md:space-x-4">
+					
+					
+				</div> -->
+        </div>
+        <div class="space-y-3 pl-2 pt-4">
+          <span class="font-medium border-b-2 pb-1 border-gray-500">Payment Method</span>
+          <div class="flex space-x-1">
+            <div class="bg-white px-2 rounded">
+              <img src="../images/p1.png" alt="" class="h-8 w-8" />
+            </div>
+            <div class="bg-white px-2 rounded">
+              <img src="../images/p2.png" alt="" class="h-8 w-8" />
+            </div>
+            <div class="bg-white px-2 rounded">
+              <img src="../images/p3.png" alt="" class="h-8 w-8" />
+            </div>
+            <div class="bg-white px-2 rounded">
+              <img src="../images/p4.png" alt="" class="h-8 w-8" />
+            </div>
+            <div class="bg-white px-2 rounded">
+              <img src="../images/p5.png" alt="" class="h-8 w-8" />
+            </div>
+            <div class="bg-white px-2 rounded">
+              <img src="../images/p6.png" alt="" class="h-8 w-8" />
+            </div>
+            <div class="bg-white px-2 rounded">
+              <img src="../images/p7.png" alt="" class="h-8 w-8" />
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col mt-6 text-xs justify-end items-end">
+          <p class="">Privacey Policy | Terms of Services</p>
+          <p class="">Copyright &copy; 2022 PUCShop. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+    <!-- end footer section -->
+  </main>
+
+  <!-- start javascript  -->
+
+  <script>
+    const openNav = (divId) => {
+      document.getElementById(divId).style.width = "300px";
+    };
+
+    const closeNav = (divId) => {
+      document.getElementById(divId).style.width = "0";
+    };
+    const openSearchBox = (divId) => {
+      var div = document.getElementById(divId);
+      document.getElementById(divId).style.height =
+        document.getElementById(divId).style.height === "3rem"
+          ? "0rem"
+          : "3rem";
+    };
+    const openSuggestionBox = (data) => {
+      divId = "suggestion-box";
+      document.getElementById(divId).style.height =
+        data.length === 0 ? "0px" : "16rem";
+    };
+  </script>
+  <!-- end javascript -->
+</body>
+
+</html>
